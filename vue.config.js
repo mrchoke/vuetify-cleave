@@ -1,3 +1,5 @@
 module.exports = {
-  transpileDependencies: ['vuetify']
+  transpileDependencies: ['vuetify'],
+  productionSourceMap: false,
+  publicPath: '/vuetify-cleave/'
 }
