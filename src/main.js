@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import Cleave from 'cleave.js'
+import 'cleave.js/dist/addons/cleave-phone.i18n'
 
 Vue.config.productionTip = false
 function getInput(el) {
