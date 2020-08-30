@@ -1,56 +1,11 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img :src="require('../assets/logo.svg')" class="my-3" contain height="200" />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br />please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank">Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(next, i) in whatsNext" :key="i" :href="next.href" class="subheading mx-3" target="_blank">
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(link, i) in importantLinks" :key="i" :href="link.href" class="subheading mx-3" target="_blank">
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col class="mb-5" cols="12">
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a v-for="(eco, i) in ecosystem" :key="i" :href="eco.href" class="subheading mx-3" target="_blank">
-            {{ eco.text }}
-          </a>
-        </v-row>
+    <v-toolbar dark>
+      <v-toolbar-title>Vuetify and Cleave.js DEMO</v-toolbar-title>
+    </v-toolbar>
+    <v-row>
+      <v-col cols="12" v-for="(input, i) in inputs" :key="i">
+        <v-text-field v-model="model[i]" :label="input.name" v-cleave="input.options" :placeholder="input.placeholder"> </v-text-field>
       </v-col>
     </v-row>
   </v-container>
@@ -61,54 +16,42 @@
     name: 'HelloWorld',
 
     data: () => ({
-      ecosystem: [
+      model: [],
+      inputs: [
         {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader'
+          name: 'Credit card',
+          options: { creditCard: true },
+          placeholder: '1234 56789 012345'
         },
         {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify'
+          name: 'Phone number ',
+          options: { phone: true, delimiter: '-', phoneRegionCode: 'TH' },
+          placeholder: '081-111-1111'
         },
         {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify'
-        }
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com'
+          name: 'Date ',
+          options: { date: true, delimiter: '/', datePattern: ['d', 'm', 'Y'] },
+          placeholder: '12/09/2020'
         },
         {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com'
+          name: 'Time ',
+          options: { time: true, datePattern: ['h', 'm', 's'] },
+          placeholder: '24:04:04'
         },
         {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify'
+          name: 'Number with Comma',
+          options: { numeral: true, numeralThousandsGroupStyle: 'thousand' },
+          placeholder: '100,000,000.00'
         },
         {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs'
+          name: 'Thai National ID card',
+          options: { numericOnly: true, delimiter: '-', blocks: [1, 4, 5, 2, 1] },
+          placeholder: '1-1234-12345-12-1'
         },
         {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify'
-        }
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer'
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
+          name: 'Prefix',
+          options: { prefix: 'PRO99', delimiter: '-', blocks: [5, 3, 3, 3], uppercase: true },
+          placeholder: 'PRO99-ACC-ABC-CDE'
         }
       ]
     })
